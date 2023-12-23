@@ -1,0 +1,31 @@
+server:
+  port: 8080
+  servlet:
+    contextPath: /
+app:
+  documentation:
+    name: Spring File Upload
+    version: 0.0.1
+  upload:
+    blocklist: application, font, text/html, text/x-php
+    allowlist: application/xml, application/pdf, application/x-elc, application/vnd.openxmlformats-officedocument.wordprocessingml.document
+  ftp:
+    address: 192.168.1.8
+    # port: 21
+    username: luiz
+    password: luiz
+    folder: /data
+spring:
+  cloud:
+    azure:
+      storage:
+        blob:
+          account-name: YOUR_ACCOUNT_NAME
+          account-key: YOUR_KEY
+          container-name: YOUR_CONTAINER
+    aws:
+      region:
+        static: YOUR_REGION
+      credentials:
+        access-key: YOUR_ACCESS_KEY
+        secret-key: YOUR_SECRET_KEY
