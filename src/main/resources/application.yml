@@ -10,11 +10,10 @@ app:
     blocklist: application, font, text/html, text/x-php
     allowlist: application/xml, application/pdf, application/x-elc, application/vnd.openxmlformats-officedocument.wordprocessingml.document
   ftp:
-    address: 192.168.1.8
-    # port: 21
-    username: luiz
-    password: luiz
-    folder: /data
+    address: YOUR_FTP_ADDRESS
+    # port: YOUR_CUSTOM_PORT (optional)
+    username: YOUR_USERNAME
+    password: YOUR_PASSWORD
 spring:
   cloud:
     azure:
@@ -25,7 +24,7 @@ spring:
           container-name: YOUR_CONTAINER
     aws:
       region:
-        static: YOUR_REGION
+        static: us-east-2
       credentials:
         access-key: YOUR_ACCESS_KEY
         secret-key: YOUR_SECRET_KEY

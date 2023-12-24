@@ -2,7 +2,6 @@ package dev.luizveronesi.upload.service.strategy;
 
 import java.io.ByteArrayInputStream;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import dev.luizveronesi.upload.model.UploadRequest;
@@ -15,13 +14,10 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AwsS3Strategy implements UploadStrategy {
 
-	@Value("${app.aws.bucket:}")
-	private String awsBucket;
-
 	private final S3Template s3Template;
 
 	public UploadResponse upload(UploadRequest request) {
-		s3Template.upload(awsBucket,
+		s3Template.upload(request.getBucket(),
 				request.getFilename(),
 				new ByteArrayInputStream(request.getBytes()));
 

@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import dev.luizveronesi.upload.model.UploadRequest;
 import dev.luizveronesi.upload.model.UploadResponse;
 import dev.luizveronesi.upload.service.factory.UploadServiceFactory;
-import dev.luizveronesi.upload.util.FileUpdateUtils;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -32,7 +31,7 @@ public class UploadService {
 		this.validate(request);
 
 		var uid = UUID.randomUUID().toString();
-		var filename = FileUpdateUtils.generateFilename(request, uid);
+		var filename = this.generateFilename(request, uid);
 		request.setFilename(filename);
 
 		/**
@@ -94,5 +93,32 @@ public class UploadService {
 				throw new RuntimeException("possible threat, can't upload.");
 			}
 		}
+	}
+
+	/**
+	 * This method generates the filename for an uploaded file. This is name follows
+	 * a rule:
+	 * Concatenation: loginId|original file name|time in milliseconds
+	 * Encrypting: use system default encrypting method
+	 * Extension: same as the uploaded file
+	 */
+	private String generateFilename(UploadRequest request, String uid) {
+		String filename = request.getFile().getOriginalFilename();
+
+		if (request.getKeepOriginalName())
+			return filename;
+
+		String extension = null;
+		if (filename.indexOf(".") > 0)
+			extension = StringUtils.substringAfterLast(filename, ".");
+		if (extension == null)
+			return "not-uploaded";
+
+		StringBuffer sb = new StringBuffer();
+		sb.append(uid);
+		sb.append(".");
+		sb.append(extension.toLowerCase());
+
+		return sb.toString();
 	}
 }

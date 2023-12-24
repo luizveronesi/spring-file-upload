@@ -49,7 +49,6 @@ app:
     # port: YOUR_CUSTOM_PORT (optional)
     username: YOUR_USERNAME
     password: YOUR_PASSWORD
-    folder: YOUR_BASE_FOLDER
 ```
 
 ### AWS S3
@@ -59,7 +58,7 @@ spring:
   cloud:
     aws:
       region:
-        static: YOUR_REGION
+        static: us-east-2 # must set a valid default value, even if not using azure
       credentials:
         access-key: YOUR_ACCESS_KEY
         secret-key: YOUR_SECRET_KEY
@@ -105,8 +104,7 @@ Upload a file and extract the pages.
 |             `file` | MultipartFile | The file itself.                                                                                                                 |
 |             `type` |    option     | Select the engine to make the upload. Four options available: LOCAL, FTP, AWS, AZURE.                                            |
 | `keepOriginalName` |    boolean    | If false, an unique identifier is generated and used at the file name. Otherwise the original name is kept. Default: false.      |
-|           `bucket` |    string     | The bucket name to be used at AWS S3. Optional.                                                                                  |
-|        `container` |    string     | The container name to be used at Azure Blob Storage. Optional.                                                                   |
+|           `bucket` |    string     | The bucket name to be used at AWS S3. Required when using AWS S3.                                                                |
 
 ## Next steps
 
