@@ -17,7 +17,7 @@
 	</parent>
 
 	<build>
-		<finalName>upload</finalName>
+		<finalName>api</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

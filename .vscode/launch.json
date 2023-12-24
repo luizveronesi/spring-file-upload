@@ -6,9 +6,8 @@
       "request": "launch",
       "cwd": "${workspaceFolder}",
       "mainClass": "dev.luizveronesi.upload.Application",
-      "projectName": "texugo-upload",
-      "args": "",
-      "envFile": "${workspaceFolder}/.env"
+      "projectName": "spring-file-upload",
+      "args": ""
     }
   ]
 }
