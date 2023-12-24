@@ -11,7 +11,6 @@ public class UploadResponse {
 
 	private String uid;
 	private String filetype;
-	private String url;
 	private String path;
 	private String name;
 	private String originalName;

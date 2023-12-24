@@ -98,13 +98,13 @@ app:
 
 Upload a file and extract the pages.
 
-|          Parameter |     Type      | Description                                                                                                                      |
-| -----------------: | :-----------: | -------------------------------------------------------------------------------------------------------------------------------- |
-|           `folder` |    string     | The folder to which the file is going to be uploaded. It may be the full path for local storage or relative path for the others. |
-|             `file` | MultipartFile | The file itself.                                                                                                                 |
-|             `type` |    option     | Select the engine to make the upload. Four options available: LOCAL, FTP, AWS, AZURE.                                            |
-| `keepOriginalName` |    boolean    | If false, an unique identifier is generated and used at the file name. Otherwise the original name is kept. Default: false.      |
-|           `bucket` |    string     | The bucket name to be used at AWS S3. Required when using AWS S3.                                                                |
+|          Parameter |     Type      | Description                                                                                                                                                               |
+| -----------------: | :-----------: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|           `folder` |    string     | The folder to which the file is going to be uploaded. It may be the full path for local storage or relative path for the others. Required only for local storage and FTP. |
+|             `file` | MultipartFile | The file itself.                                                                                                                                                          |
+|             `type` |    option     | Select the engine to make the upload. Four options available: LOCAL, FTP, AWS, AZURE.                                                                                     |
+| `keepOriginalName` |    boolean    | If false, an unique identifier is generated and used at the file name. Otherwise the original name is kept. Default: false.                                               |
+|           `bucket` |    string     | The bucket name to be used at AWS S3. Required when using AWS S3.                                                                                                         |
 
 ## Next steps
 

@@ -28,7 +28,7 @@ public class FtpStrategy implements UploadStrategy {
 	@Value("${app.ftp.password:}")
 	private String FTP_PASSWORD;
 
-	public UploadResponse upload(UploadRequest request) {
+	public String upload(UploadRequest request) {
 		var filename = request.getFilename();
 		var ftp = new FTPClient();
 
@@ -75,10 +75,7 @@ public class FtpStrategy implements UploadStrategy {
 			}
 		}
 
-		return UploadResponse.builder()
-				.path(request.getFolder() + File.separator + filename)
-				.build();
-
+		return request.getFolder() + File.separator + filename;
 	}
 
 	@Override

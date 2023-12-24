@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import dev.luizveronesi.upload.model.UploadRequest;
 import dev.luizveronesi.upload.model.UploadResponse;
+import dev.luizveronesi.upload.model.UploadType;
 import dev.luizveronesi.upload.service.factory.UploadServiceFactory;
 import lombok.RequiredArgsConstructor;
 
@@ -45,12 +46,15 @@ public class UploadService {
 		var type = this.detectType(bytes);
 		this.verifyThreat(type);
 
-		var response = uploadServiceFactory.getStrategy(request.getType()).upload(request);
-		response.setFiletype(type);
-		response.setOriginalName(request.getFile().getOriginalFilename());
-		response.setName(filename);
+		var path = uploadServiceFactory.getStrategy(request.getType()).upload(request);
 
-		return response;
+		return UploadResponse.builder()
+				.uid(uid)
+				.filetype(type)
+				.originalName(request.getFile().getOriginalFilename())
+				.name(filename)
+				.path(path)
+				.build();
 	}
 
 	private byte[] convertToByte(UploadRequest request) {
@@ -62,10 +66,9 @@ public class UploadService {
 	}
 
 	private void validate(UploadRequest request) {
-		if (StringUtils.isEmpty(request.getFolder())
-				|| request.getFile().isEmpty()
-				|| !request.getFile().getOriginalFilename().endsWith(".pdf"))
-			throw new RuntimeException("folder or file is empty");
+		if (request.getType().equals(UploadType.AWS)
+				&& StringUtils.isEmpty(request.getBucket()))
+			throw new RuntimeException("bucket is empty");
 	}
 
 	/**

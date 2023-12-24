@@ -1,5 +1,7 @@
 package dev.luizveronesi.upload.model;
 
+import javax.validation.constraints.NotNull;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -12,14 +14,15 @@ public class UploadRequest {
 
     private String folder;
 
-    private String path = "";
-
     private String bucket;
 
+    @NotNull
     private MultipartFile file;
 
+    @NotNull
     private UploadType type;
 
+    @NotNull
     private Boolean keepOriginalName = Boolean.FALSE;
 
     @Schema(hidden = true)
