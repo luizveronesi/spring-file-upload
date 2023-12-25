@@ -29,8 +29,6 @@ public class UploadService {
 	private final UploadServiceFactory uploadServiceFactory;
 
 	public UploadResponse execute(UploadRequest request) {
-		this.validate(request);
-
 		var uid = UUID.randomUUID().toString();
 		var filename = this.generateFilename(request, uid);
 		request.setFilename(filename);
@@ -63,12 +61,6 @@ public class UploadService {
 		} catch (IOException e1) {
 			throw new RuntimeException("error reading file");
 		}
-	}
-
-	private void validate(UploadRequest request) {
-		if (request.getType().equals(UploadType.AWS)
-				&& StringUtils.isEmpty(request.getBucket()))
-			throw new RuntimeException("bucket is empty");
 	}
 
 	/**
